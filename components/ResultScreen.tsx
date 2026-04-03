@@ -10,6 +10,7 @@ import {
   reducedMotionVariants,
 } from "@/lib/animations";
 import { useReducedMotionContext } from "./AppShell";
+import Image from "next/image";
 
 type Props = {
   results: RankEntry[];
@@ -75,114 +76,136 @@ export default function ResultScreen({ results, onRestart, onEdit }: Props) {
   };
 
   return (
-    <motion.div
-      className="w-full max-w-lg px-4 py-12 flex flex-col"
-      variants={pv}
-      initial="initial"
-      animate="animate"
-      exit="exit"
-    >
-      {/* リード文 */}
-      <motion.p
-        className="text-base text-neutral-500 text-center mb-2"
-        initial={{ opacity: 0 }}
+    <>
+      {/* ヘッダー */}
+      < motion.div
+        className="z-10 p-4 fixed top-0 left-0 w-full flex justify-center"
+        variants={pv}
+        initial={{ opacity: 0 }
+        }
         animate={{ opacity: 1 }}
-        transition={reducedMotion ? { duration: 0 } : { delay: 0.2, duration: 0.4 }}
+        transition={reducedMotion ? { duration: 0 } : { delay: 0.1, duration: 0.2 }}
       >
-        あなたにとって、最も重要なのは
-      </motion.p>
+        <h1>
+          <Image
+            className="w-[80px] h-auto"
+            src="/img/logo.svg"
+            alt="Pitasuke"
+            width={100}
+            height={40}
+          />
+        </h1>
+      </motion.div >
 
-      {/* The One */}
-      {champion && (
-        <motion.div
-          className="text-center mb-10"
-          initial={{ scale: 0.5, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={
-            reducedMotion
-              ? { duration: 0 }
-              : { delay: 0.4, type: "spring", stiffness: 300, damping: 20 }
-          }
-        >
-          <span className="text-4xl md:text-5xl font-bold text-neutral-900 leading-tight break-words">
-            {champion.text}
-          </span>
-        </motion.div>
-      )}
-
-      {/* ランキングリスト */}
-      {rankList.length > 0 && (
-        <motion.ol
-          className="space-y-2 mb-10"
-          variants={cv}
-          initial="hidden"
-          animate="show"
-        >
-          {rankList.map((entry) => (
-            <motion.li
-              key={entry.rank}
-              variants={iv}
-              className="flex items-center gap-3 bg-white shadow-sm rounded-xl p-4"
-            >
-              <span className="text-sm font-semibold text-neutral-500 w-8 flex-shrink-0 pt-0.5">
-                {entry.rank}位
-              </span>
-              <span className="text-base text-neutral-800 break-words">
-                {entry.items.length > 1
-                  ? entry.items.map((i) => i.text).join(" / ")
-                  : entry.items[0].text}
-              </span>
-            </motion.li>
-          ))}
-        </motion.ol>
-      )}
-
-      {/* ボタン類 */}
       <motion.div
-        className="flex flex-col gap-4"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={reducedMotion ? { duration: 0 } : { delay: 1.2, duration: 0.3 }}
+        className="w-full max-w-xl px-4 py-12 flex flex-col"
+        variants={pv}
+        initial="initial"
+        animate="animate"
+        exit="exit"
       >
-
-        <motion.button
-          onClick={handleCopy}
-          whileTap={reducedMotion ? {} : { scale: 0.97 }}
-          className="flex items-center justify-center gap-3 w-full py-4 rounded-full bg-neutral-800 text-white text-sm hover:bg-neutral-600 transition"
+        {/* リード文 */}
+        <motion.p
+          className="text-base text-neutral-500 text-center mb-2"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={reducedMotion ? { duration: 0 } : { delay: 0.2, duration: 0.4 }}
         >
-          {copied ? (
-            <>
-              <Check size={14} />
-              コピーしました
-            </>
-          ) : (
-            <>
-              <Copy size={14} />
-              結果をコピー
-            </>
-          )}
-        </motion.button>
-        <motion.button className="flex gap-4">
-          <motion.button
-            onClick={onEdit}
-            whileTap={reducedMotion ? {} : { scale: 0.97 }}
-            className="flex items-center justify-center gap-3 w-full py-4 rounded-full border border-neutral-300 bg-white text-neutral-700 text-sm hover:bg-neutral-50 transition"
+          あなたにとって、最も重要なのは
+        </motion.p>
+
+        {/* The One */}
+        {champion && (
+          <motion.div
+            className="text-center mb-10"
+            initial={{ scale: 0.5, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={
+              reducedMotion
+                ? { duration: 0 }
+                : { delay: 0.4, type: "spring", stiffness: 300, damping: 20 }
+            }
           >
-            <Edit3 size={14} />
-            項目を編集
+            <span className="text-4xl sm:text-5xl font-bold text-neutral-800 leading-tight break-words tracking-[1px]">
+              {champion.text}
+            </span>
+          </motion.div>
+        )}
+
+        {/* ランキングリスト */}
+        {rankList.length > 0 && (
+          <motion.ol
+            className="space-y-2 mb-10"
+            variants={cv}
+            initial="hidden"
+            animate="show"
+          >
+            {rankList.map((entry) => (
+              <motion.li
+                key={entry.rank}
+                variants={iv}
+                className="flex items-center gap-3 bg-white shadow-sm rounded-xl p-4"
+              >
+                <span className="text-sm font-semibold text-neutral-500 w-8 flex-shrink-0 pt-0.5">
+                  {entry.rank}位
+                </span>
+                <span className="text-base text-neutral-800 break-words">
+                  {entry.items.length > 1
+                    ? entry.items.map((i) => i.text).join(" / ")
+                    : entry.items[0].text}
+                </span>
+              </motion.li>
+            ))}
+          </motion.ol>
+        )}
+
+        {/* ボタン類 */}
+        <motion.div
+          className="flex flex-col gap-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={reducedMotion ? { duration: 0 } : { delay: 1.2, duration: 0.3 }}
+        >
+
+          <motion.button
+            onClick={handleCopy}
+            whileTap={reducedMotion ? {} : { scale: 0.97 }}
+            className="flex items-center justify-center gap-3 w-full py-4 rounded-full bg-neutral-800 text-white text-sm hover:bg-neutral-600 transition"
+          >
+            {copied ? (
+              <>
+                <Check size={14} />
+                コピーしました
+              </>
+            ) : (
+              <>
+                <Copy size={14} />
+                結果をコピー
+              </>
+            )}
           </motion.button>
+          <motion.button className="flex gap-4">
+            <motion.button
+              onClick={onEdit}
+              whileTap={reducedMotion ? {} : { scale: 0.97 }}
+              className="flex items-center justify-center gap-3 w-full py-4 rounded-full border border-neutral-300 bg-white text-neutral-700 text-sm hover:bg-neutral-50 transition"
+            >
+              <Edit3 size={14} />
+              項目を編集
+            </motion.button>
 
 
-          <motion.button
-            onClick={onRestart}
-            whileTap={reducedMotion ? {} : { scale: 0.97 }}
-            className="flex items-center justify-center gap-3 w-full py-4 rounded-full border border-neutral-300 bg-white text-neutral-700 text-sm hover:bg-neutral-50 transition"
-          >
-            <RotateCcw size={14} />
-            もう一度
+            <motion.button
+              onClick={onRestart}
+              whileTap={reducedMotion ? {} : { scale: 0.97 }}
+              className="flex items-center justify-center gap-3 w-full py-4 rounded-full border border-neutral-300 bg-white text-neutral-700 text-sm hover:bg-neutral-50 transition"
+            >
+              <RotateCcw size={14} />
+              もう一度
+            </motion.button>
           </motion.button>
-        </motion.button>
+        </motion.div>
       </motion.div>
-    </motion.div>
+    </>
   );
 }

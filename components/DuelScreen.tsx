@@ -7,6 +7,7 @@ import { Tournament, Item } from "@/lib/types";
 import { useTournament } from "@/hooks/useTournament";
 import { pageVariants, springBase, reducedMotionVariants } from "@/lib/animations";
 import { useReducedMotionContext } from "./AppShell";
+import Image from "next/image";
 
 type Props = {
   tournament: Tournament;
@@ -83,6 +84,8 @@ export default function DuelScreen({ tournament: initialTournament, onComplete, 
     100
   );
   const remaining = tournament.totalMatches - tournament.completedMatches;
+  const total = tournament.totalMatches;
+  const current = tournament.completedMatches + 1;
 
   return (
     <motion.div
@@ -94,43 +97,29 @@ export default function DuelScreen({ tournament: initialTournament, onComplete, 
     >
 
       {/* ガイドコピー */}
-      <p className="text-neutral-900 text-xl font-semibold text-center mb-4">直感で選びましょう</p>
+      <p className="text-neutral-600 text-lg font-semibold text-center mb-6 sm:text-md">直感で選びましょう</p>
 
       {/* ヘッダー */}
-      <div className="mb-6">
-        <div className="flex items-center mb-2 justify-between">
+      <div className="mb-8">
+        <div className="relative flex items-center justify-center">
           {!isFirstMatch && (
             <motion.button
               onClick={back}
               whileTap={reducedMotion ? {} : { scale: 0.95 }}
-              className="flex items-center gap-1 text-neutral-500 hover:text-neutral-900 transition text-sm"
+              className="w-[44px] h-[40px] absolute left-0 flex items-center justify-center gap-1 text-neutral-400 hover:text-neutral-700 transition"
               aria-label="前の比較に戻る"
             >
-              <ChevronLeft size={16} />
-              戻る
+              <ChevronLeft size={22} />
             </motion.button>
           )}
-          <div className="text-right mt-1 text-xs text-neutral-400 ml-auto">
-            あと{remaining}回
+          <div className="text-sm text-neutral-800 rounded-lg bg-neutral-100 p-3">
+            {current}<span className="text-neutral-400"> / {total}</span>
           </div>
-        </div>
-
-        {/* プログレスバー */}
-        <div
-          className="w-full bg-neutral-200 rounded-full h-1.5 overflow-hidden"
-          aria-live="polite"
-          aria-label={`あと ${remaining} 回`}
-        >
-          <motion.div
-            className="h-full bg-neutral-900 rounded-full"
-            animate={{ width: `${progress}%` }}
-            transition={reducedMotion ? { duration: 0 } : springBase}
-          />
         </div>
       </div>
 
       {/* 対戦カード */}
-      <div className="flex flex-col md:flex-row gap-2 flex-1 items-stretch">
+      <div className="flex flex-col gap-3 flex-1 items-stretch">
         <AnimatePresence mode="wait">
           <DuelCard
             key={`${currentMatch.id}-a`}
@@ -142,10 +131,7 @@ export default function DuelScreen({ tournament: initialTournament, onComplete, 
           />
         </AnimatePresence>
 
-        <div className="hidden md:flex items-center justify-center text-neutral-300 font-bold text-xl select-none">
-          or
-        </div>
-        <div className="flex md:hidden items-center justify-center text-neutral-300 font-bold text-xl select-none">
+        <div className="flex items-center justify-center text-neutral-300 text-xl select-none">
           or
         </div>
 
@@ -190,9 +176,16 @@ function DuelCard({ item, side, onSelect, reducedMotion, matchId }: DuelCardProp
       whileTap={reducedMotion ? {} : { scale: 0.97 }}
       onClick={() => onSelect(item)}
       aria-label={`${item.text} を選ぶ`}
-      className="flex-1 min-h-[180px] md:min-h-[280px] bg-white border-2 border-neutral-400 border-dashed rounded-2xl p-6 flex items-center justify-center text-center cursor-pointer hover:border-neutral-400 transition-colors focus:outline-none focus:border-solid focus:border-neutral-800"
+      className="overflow-hidden relative bg-[#42B38D] min-h-[150px] rounded-2xl p-6 flex items-center justify-center text-center cursor-pointer hover:border-neutral-400 transition-colors focus:outline-none focus:border-solid focus:border-neutral-800"
     >
-      <span className="text-lg md:text-xl font-semibold text-neutral-800 leading-relaxed break-words">
+      <Image
+        className="absolute w-full h-auto"
+        src="/img/card-bg.png"
+        alt="Pitasuke"
+        width={800}
+        height={40}
+      />
+      <span className="relative z-2 text-xl md:text-xl font-semibold text-white leading-relaxed break-words">
         {item.text}
       </span>
     </motion.button>

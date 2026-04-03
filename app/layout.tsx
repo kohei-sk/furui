@@ -1,16 +1,19 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Noto_Sans_JP } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
+const notoSansJP = Noto_Sans_JP({
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
   subsets: ["latin"],
   variable: "--font-sans",
+  display: "swap",
+  preload: false,
 });
 
 export const metadata: Metadata = {
-  title: "Furui — 思考を篩にかける",
+  title: "Furui — 頭の中を篩(ふるい)にかける",
   description:
-    "頭の中を全部出して、一対一の直感比較で優先順位を見つけるツール。",
+    "頭の中のモヤモヤを書き出して、直感的に優先順位をつけられるツール。",
 };
 
 export default function RootLayout({
@@ -20,7 +23,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
-      <body className={`${inter.variable} font-sans antialiased bg-neutral-50`}>
+      <body className={`${notoSansJP.variable} font-sans antialiased bg-neutral-50`}>
         {children}
       </body>
     </html>

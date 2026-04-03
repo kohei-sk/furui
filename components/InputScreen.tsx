@@ -215,7 +215,7 @@ export default function InputScreen({
 
         {/* 比較開始ボタン */}
         <motion.div
-          className="fixed left-0 bottom-0 w-full p-4 z-10 flex justify-center"
+          className="flex flex-col fixed left-0 bottom-0 w-full p-4 z-10 flex justify-center"
           variants={pv}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

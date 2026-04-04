@@ -170,7 +170,7 @@ export default function ResultScreen({ results, onRestart, onEdit }: Props) {
           <motion.button
             onClick={handleCopy}
             whileTap={reducedMotion ? {} : { scale: 0.97 }}
-            className="flex items-center justify-center gap-3 w-full py-4 rounded-full bg-neutral-800 text-white text-sm hover:bg-neutral-600 transition"
+            className="btn-primary"
           >
             {copied ? (
               <>
@@ -188,7 +188,7 @@ export default function ResultScreen({ results, onRestart, onEdit }: Props) {
             <motion.button
               onClick={onEdit}
               whileTap={reducedMotion ? {} : { scale: 0.97 }}
-              className="flex items-center justify-center gap-3 w-full py-4 rounded-full border border-neutral-300 bg-white text-neutral-700 text-sm hover:bg-neutral-50 transition"
+              className="btn-secondary"
             >
               <Edit3 size={14} />
               項目を編集
@@ -198,7 +198,7 @@ export default function ResultScreen({ results, onRestart, onEdit }: Props) {
             <motion.button
               onClick={onRestart}
               whileTap={reducedMotion ? {} : { scale: 0.97 }}
-              className="flex items-center justify-center gap-3 w-full py-4 rounded-full border border-neutral-300 bg-white text-neutral-700 text-sm hover:bg-neutral-50 transition"
+              className="btn-secondary"
             >
               <RotateCcw size={14} />
               もう一度

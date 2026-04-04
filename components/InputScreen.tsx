@@ -102,7 +102,7 @@ export default function InputScreen({
     <>
       {/* ヘッダー */}
       < motion.div
-        className="z-10 p-4 fixed top-0 left-0 w-full flex justify-center"
+        className="z-10 p-4 absolute top-0 left-0 w-full flex justify-center"
         variants={pv}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -212,35 +212,35 @@ export default function InputScreen({
             </AnimatePresence>
           </motion.ul>
         )}
+      </motion.div>
 
-        {/* 比較開始ボタン */}
-        <motion.div
-          className="flex flex-col fixed left-0 bottom-0 w-full p-4 z-10 flex justify-center"
-          variants={pv}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={reducedMotion ? { duration: 0 } : { delay: 0.5, duration: 0.2 }}
+      {/* 比較開始ボタン */}
+      <motion.div
+        className="flex flex-col absolute left-0 bottom-0 w-full p-4 z-10 flex justify-center items-center"
+        variants={pv}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={reducedMotion ? { duration: 0 } : { delay: 0.5, duration: 0.2 }}
+      >
+        {!canStart && items.length > 0 && (
+          <p className="text-center text-xs text-neutral-400 mb-3">
+            あと{remaining}つで進めます
+          </p>
+        )}
+        <motion.button
+          onClick={onStart}
+          disabled={!canStart}
+          animate={
+            startButtonPulsed && !reducedMotion
+              ? { scale: [1, 1.05, 1] }
+              : { scale: 1 }
+          }
+          transition={springBase}
+          whileTap={reducedMotion ? {} : { scale: 0.97 }}
+          className="max-w-xl btn-primary"
         >
-          {!canStart && items.length > 0 && (
-            <p className="text-center text-xs text-neutral-400 mb-3">
-              あと{remaining}つで進めます
-            </p>
-          )}
-          <motion.button
-            onClick={onStart}
-            disabled={!canStart}
-            animate={
-              startButtonPulsed && !reducedMotion
-                ? { scale: [1, 1.05, 1] }
-                : { scale: 1 }
-            }
-            transition={springBase}
-            whileTap={reducedMotion ? {} : { scale: 0.97 }}
-            className="max-w-xl flex items-center justify-center gap-3 w-full py-4 rounded-full bg-neutral-800 text-white text-sm hover:bg-neutral-600 transition disabled:opacity-30 disabled:cursor-not-allowed"
-          >
-            フルイにかける
-          </motion.button>
-        </motion.div>
+          フルイにかける
+        </motion.button>
       </motion.div>
     </>
   );

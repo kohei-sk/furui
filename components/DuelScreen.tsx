@@ -89,7 +89,7 @@ export default function DuelScreen({ tournament: initialTournament, onComplete, 
 
   return (
     <motion.div
-      className="w-full max-w-2xl px-4 py-8 flex flex-col min-h-screen justify-between"
+      className="w-full max-w-2xl px-4 py-8 flex flex-col min-h-dvh justify-between"
       variants={pv}
       initial="initial"
       animate="animate"

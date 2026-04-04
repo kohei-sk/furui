@@ -63,7 +63,7 @@ export default function AppShell() {
 
   return (
     <ReducedMotionContext.Provider value={shouldReduceMotion}>
-      <div className="min-h-screen bg-neutral-50 flex flex-col items-center justify-center">
+      <div className="relative min-h-dvh bg-neutral-50 flex flex-col items-center justify-center">
         <AnimatePresence mode="wait">
           {screen === "input" && (
             <InputScreen

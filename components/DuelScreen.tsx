@@ -97,7 +97,7 @@ export default function DuelScreen({ tournament: initialTournament, onComplete, 
     >
 
       {/* ガイドコピー */}
-      <p className="text-neutral-600 text-lg font-semibold text-center mb-6 sm:text-md">直感で選びましょう</p>
+      <p className="text-neutral-600 text-xl font-semibold text-center mb-6 sm:text-md">直感で選びましょう</p>
 
       {/* ヘッダー */}
       <div className="mb-8">
@@ -112,7 +112,7 @@ export default function DuelScreen({ tournament: initialTournament, onComplete, 
               <ChevronLeft size={22} />
             </motion.button>
           )}
-          <div className="text-sm text-neutral-800 rounded-lg bg-neutral-100 p-3">
+          <div className="text-sm text-neutral-800 rounded-lg bg-[#efeeee] p-3">
             {current}<span className="text-neutral-400"> / {total}</span>
           </div>
         </div>
@@ -176,7 +176,7 @@ function DuelCard({ item, side, onSelect, reducedMotion, matchId }: DuelCardProp
       whileTap={reducedMotion ? {} : { scale: 0.97 }}
       onClick={() => onSelect(item)}
       aria-label={`${item.text} を選ぶ`}
-      className="overflow-hidden relative bg-[#42B38D] min-h-[150px] rounded-2xl p-6 flex items-center justify-center text-center cursor-pointer hover:border-neutral-400 transition-colors focus:outline-none focus:border-solid focus:border-neutral-800"
+      className="overflow-hidden relative bg-[#ED7456] min-h-[150px] rounded-2xl p-6 flex items-center justify-center text-center cursor-pointer hover:border-neutral-400 transition-colors focus:outline-none focus:border-solid focus:border-neutral-800"
     >
       <Image
         className="absolute w-full h-auto"

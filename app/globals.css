@@ -6,7 +6,7 @@ html,
 body {
   height: 100%;
   font-feature-settings: "palt";
-  letter-spacing: 2px;
+  letter-spacing: 1.5px;
 }
 
 * {
@@ -14,9 +14,9 @@ body {
 }
 
 .btn-primary {
-  @apply flex items-center justify-center gap-3 w-full py-4 rounded-full bg-neutral-800 text-white text-sm hover:bg-neutral-600 transition disabled:opacity-30 disabled:cursor-not-allowed;
+  @apply flex font-medium items-center justify-center gap-3 w-full py-4 rounded-full bg-neutral-800 text-white text-sm hover:bg-neutral-600 transition disabled:opacity-30 disabled:cursor-not-allowed;
 }
 
 .btn-secondary {
-  @apply flex items-center justify-center gap-3 w-full py-4 rounded-full border border-neutral-300 bg-white text-neutral-700 text-sm hover:bg-neutral-50 transition;
+  @apply flex font-medium items-center justify-center gap-3 w-full py-4 rounded-full border border-neutral-300 bg-white text-neutral-700 text-sm hover:bg-neutral-50 transition;
 }

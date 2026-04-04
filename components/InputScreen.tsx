@@ -224,7 +224,7 @@ export default function InputScreen({
         transition={reducedMotion ? { duration: 0 } : { delay: 0.5, duration: 0.2 }}
       >
         {!canStart && items.length > 0 && (
-          <p className="text-center text-xs text-neutral-800 mb-3">
+          <p className="text-center text-xs text-neutral-600 mb-3">
             あと{remaining}つで進めます
           </p>
         )}

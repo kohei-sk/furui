@@ -98,7 +98,7 @@ export default function ResultScreen({ results, onRestart, onEdit }: Props) {
       </motion.div >
 
       <motion.div
-        className="w-full max-w-xl px-4 py-20 flex flex-col relative z-10"
+        className="w-full max-w-2xl px-4 py-20 flex flex-1 flex-col relative z-10"
         variants={pv}
         initial="initial"
         animate="animate"
@@ -106,7 +106,7 @@ export default function ResultScreen({ results, onRestart, onEdit }: Props) {
       >
         {/* リード文 */}
         <motion.p
-          className="text-base text-neutral-500 text-center mb-2"
+          className="text-base text-neutral-500 text-center mb-2 sm:text-lg"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={reducedMotion ? { duration: 0 } : { delay: 0.2, duration: 0.4 }}
@@ -161,49 +161,51 @@ export default function ResultScreen({ results, onRestart, onEdit }: Props) {
 
         {/* ボタン類 */}
         <motion.div
-          className="flex flex-col gap-4"
+          className="w-full flex justify-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={reducedMotion ? { duration: 0 } : { delay: 1.2, duration: 0.3 }}
         >
-
-          <motion.button
-            onClick={handleCopy}
-            whileTap={reducedMotion ? {} : { scale: 0.97 }}
-            className="btn-primary"
-          >
-            {copied ? (
-              <>
-                <Check size={14} />
-                コピーしました
-              </>
-            ) : (
-              <>
-                <Copy size={14} />
-                結果をコピー
-              </>
-            )}
-          </motion.button>
-          <motion.button className="flex gap-4">
-            <motion.button
-              onClick={onEdit}
-              whileTap={reducedMotion ? {} : { scale: 0.97 }}
-              className="btn-secondary"
-            >
-              <Edit3 size={14} />
-              項目を編集
-            </motion.button>
-
+          <div className="w-full max-w-md flex flex-col gap-4">
 
             <motion.button
-              onClick={onRestart}
+              onClick={handleCopy}
               whileTap={reducedMotion ? {} : { scale: 0.97 }}
-              className="btn-secondary"
+              className="btn-primary"
             >
-              <RotateCcw size={14} />
-              もう一度
+              {copied ? (
+                <>
+                  <Check size={14} />
+                  コピーしました
+                </>
+              ) : (
+                <>
+                  <Copy size={14} />
+                  結果をコピー
+                </>
+              )}
             </motion.button>
-          </motion.button>
+            <motion.button className="flex gap-4">
+              <motion.button
+                onClick={onEdit}
+                whileTap={reducedMotion ? {} : { scale: 0.97 }}
+                className="btn-secondary"
+              >
+                <Edit3 size={14} />
+                項目を編集
+              </motion.button>
+
+
+              <motion.button
+                onClick={onRestart}
+                whileTap={reducedMotion ? {} : { scale: 0.97 }}
+                className="btn-secondary"
+              >
+                <RotateCcw size={14} />
+                もう一度
+              </motion.button>
+            </motion.button>
+          </div>
         </motion.div>
       </motion.div>
 

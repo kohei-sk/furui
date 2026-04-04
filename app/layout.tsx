@@ -30,7 +30,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
-      <body className={`${notoSansJP.variable} font-sans antialiased bg-neutral-50`}>
+      <body className={`${notoSansJP.variable} font-sans antialiased bg-[#f6f5f3]`}>
         {children}
       </body>
     </html>

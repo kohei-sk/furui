@@ -120,7 +120,7 @@ export default function InputScreen({
       </motion.div >
 
       <motion.div
-        className="flex-1 w-full max-w-xl px-4 py-20 z-10"
+        className="flex-1 w-full max-w-2xl px-4 py-20 z-10"
         variants={pv}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -128,7 +128,7 @@ export default function InputScreen({
       >
 
         <div className="mb-6">
-          <p className="text-neutral-600 text-lg font-semibold text-center sm:text-md">
+          <p className="text-neutral-600 text-xl font-semibold text-center sm:text-md">
             頭の中にあるものを<br />すべて書き出してみましょう
           </p>
         </div>
@@ -238,14 +238,14 @@ export default function InputScreen({
           }
           transition={springBase}
           whileTap={reducedMotion ? {} : { scale: 0.97 }}
-          className="max-w-xl btn-primary"
+          className="max-w-md btn-primary"
         >
           フルイにかける
         </motion.button>
       </motion.div>
       <div className="w-full fixed left-0 bottom-0 flex justify-center">
         <Image
-          className="w-[80vw] h-auto hidden sm:block"
+          className="w-[60vw] h-auto hidden sm:block"
           src="/img/bg-big.svg"
           alt="背景"
           width={100}

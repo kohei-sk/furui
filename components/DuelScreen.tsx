@@ -181,7 +181,7 @@ function DuelCard({ item, side, onSelect, reducedMotion, matchId }: DuelCardProp
       <Image
         className="absolute w-full h-auto"
         src="/img/card-bg.png"
-        alt="Pitasuke"
+        alt="背景"
         width={800}
         height={40}
       />

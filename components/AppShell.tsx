@@ -25,8 +25,8 @@ export default function AppShell() {
     const trimmed = text.trim();
     if (!trimmed || trimmed.length > 100) return;
     setItems((prev) => [
-      ...prev,
       { id: crypto.randomUUID(), text: trimmed },
+      ...prev,
     ]);
   };
 
@@ -63,7 +63,7 @@ export default function AppShell() {
 
   return (
     <ReducedMotionContext.Provider value={shouldReduceMotion}>
-      <div className="relative min-h-dvh bg-neutral-50 flex flex-col items-center justify-center">
+      <div className="min-h-dvh bg-neutral-50 flex flex-col items-center justify-center">
         <AnimatePresence mode="wait">
           {screen === "input" && (
             <InputScreen

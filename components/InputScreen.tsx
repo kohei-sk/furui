@@ -102,7 +102,7 @@ export default function InputScreen({
     <>
       {/* ヘッダー */}
       < motion.div
-        className="z-10 p-4 absolute top-0 left-0 w-full flex justify-center"
+        className="z-10 p-4 fixed top-0 left-0 w-full flex justify-center"
         variants={pv}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -112,7 +112,7 @@ export default function InputScreen({
           <Image
             className="w-[80px] h-auto"
             src="/img/logo.svg"
-            alt="Pitasuke"
+            alt="背景"
             width={100}
             height={40}
           />
@@ -120,7 +120,7 @@ export default function InputScreen({
       </motion.div >
 
       <motion.div
-        className="w-full max-w-xl px-4 py-16"
+        className="flex-1 w-full max-w-xl px-4 py-20 z-10"
         variants={pv}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -155,6 +155,7 @@ export default function InputScreen({
           />
           <motion.button
             onClick={handleAdd}
+            onMouseDown={(e) => e.preventDefault()}
             disabled={isAtMax || !inputValue.trim()}
             whileTap={reducedMotion ? {} : { scale: 0.97 }}
             className="absolute bottom-2 right-2 flex items-center justify-center w-10 h-10 rounded-full bg-neutral-800 text-white disabled:opacity-40 disabled:cursor-not-allowed hover:bg-neutral-600 transition"
@@ -216,14 +217,14 @@ export default function InputScreen({
 
       {/* 比較開始ボタン */}
       <motion.div
-        className="flex flex-col absolute left-0 bottom-0 w-full p-4 z-10 flex justify-center items-center"
+        className="flex flex-col fixed left-0 bottom-0 w-full p-4 z-10 flex justify-center items-center"
         variants={pv}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={reducedMotion ? { duration: 0 } : { delay: 0.5, duration: 0.2 }}
       >
         {!canStart && items.length > 0 && (
-          <p className="text-center text-xs text-neutral-400 mb-3">
+          <p className="text-center text-xs text-neutral-600 mb-3">
             あと{remaining}つで進めます
           </p>
         )}
@@ -242,6 +243,22 @@ export default function InputScreen({
           フルイにかける
         </motion.button>
       </motion.div>
+      <div className="w-full fixed left-0 bottom-0 flex justify-center">
+        <Image
+          className="w-[80vw] h-auto hidden sm:block"
+          src="/img/bg-big.svg"
+          alt="背景"
+          width={100}
+          height={40}
+        />
+        <Image
+          className="w-full h-auto block sm:hidden"
+          src="/img/bg-small.svg"
+          alt="背景"
+          width={100}
+          height={40}
+        />
+      </div>
     </>
   );
 

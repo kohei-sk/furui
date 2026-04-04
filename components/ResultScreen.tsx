@@ -90,7 +90,7 @@ export default function ResultScreen({ results, onRestart, onEdit }: Props) {
           <Image
             className="w-[80px] h-auto"
             src="/img/logo.svg"
-            alt="Pitasuke"
+            alt="背景"
             width={100}
             height={40}
           />
@@ -98,7 +98,7 @@ export default function ResultScreen({ results, onRestart, onEdit }: Props) {
       </motion.div >
 
       <motion.div
-        className="w-full max-w-xl px-4 py-12 flex flex-col"
+        className="w-full max-w-xl px-4 py-20 flex flex-col relative z-10"
         variants={pv}
         initial="initial"
         animate="animate"
@@ -206,6 +206,23 @@ export default function ResultScreen({ results, onRestart, onEdit }: Props) {
           </motion.button>
         </motion.div>
       </motion.div>
+
+      <div className="w-full fixed left-0 top-0 flex justify-center">
+        <Image
+          className="max-w-none object-cover w-[2000px] h-auto hidden sm:block"
+          src="/img/bg-result-big.png"
+          alt="背景"
+          width={2000}
+          height={40}
+        />
+        <Image
+          className="w-full h-auto block sm:hidden"
+          src="/img/bg-result-small.png"
+          alt="背景"
+          width={1000}
+          height={40}
+        />
+      </div>
     </>
   );
 }
